@@ -3,7 +3,8 @@ from fastapi import FastAPI
 from app.api import auth
 from app.api import transactions as transaction_routes
 from app.api import users as user_routes
-from app.core.database import Base, engine
+from app.core.database import Base
+from app.core.database import pg_db as engine
 
 Base.metadata.create_all(bind=engine)
 

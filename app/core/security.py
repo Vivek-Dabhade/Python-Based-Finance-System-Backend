@@ -10,8 +10,8 @@ from app.core.config import settings
 from app.core.database import get_db
 from app.models.users import User
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 
 def hash_password(password: str):
@@ -28,7 +28,7 @@ def create_access_token(data: dict):
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
     data_copy.update({"exp": expiry_time})
-    encoder = jwt.encode(data_copy, settings.SECRET_KEY, algorithms=settings.ALGORITHM)
+    encoder = jwt.encode(data_copy, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoder
 
 
